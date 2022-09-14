@@ -25,8 +25,8 @@ class Place(BaseModel, Base):
     number_bathrooms = Column(Integer, nullable=False, default=0)
     max_guest = Column(Integer, nullable=False, default=0)
     price_by_night = Column(Integer, nullable=False, default=0)
-    latitude = Column(Float, nullable=False, default=0)
-    longitude = Column(Float, nullable=False, default=0)
+    latitude = Column(Float)
+    longitude = Column(Float)
     amenity_ids = []
 
     if getenv("HBNB_TYPE_STORAGE") == "db":
