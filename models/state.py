@@ -16,7 +16,8 @@ class State(BaseModel, Base):
     # cascade "all, delete" when a `state`` object is marked for
     # deletion,its related `city` objects should also be marked for deletion
     if getenv("HBNB_TYPE_STORAGE") == "db":  # is DB is in use?
-        cities = relationship('City', backref="state", cascade="all, delete, delete-orphan")
+        cities = relationship('City', backref="state",
+                              cascade="all, delete, delete-orphan")
     else:  # use a property for file storage
         @property
         def cities(self):
