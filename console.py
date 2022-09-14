@@ -246,10 +246,10 @@ class HBNBCommand(cmd.Cmd):
                 return
             args = HBNBCommand.classes[args]
             for v in storage.all(args).values():
-                print_list.append(str(v))
+                print_list.append(v)
         else:
             for v in storage.all().values():
-                print_list.append(str(v))
+                print_list.append(v)
 
         print(print_list)
 
