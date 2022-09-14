@@ -150,7 +150,10 @@ class HBNBCommand(cmd.Cmd):
             if value[0] == "\"" and value[-1] == "\"":
                 value = value.strip("\"").replace("_", " ")
             else:
-                value = eval(value)
+                try:
+                    value = eval(value)
+                except Exception:
+                    pass
                 if type(value) not in [int, float]:  # must be an int or float
                     continue  # skip!
 
