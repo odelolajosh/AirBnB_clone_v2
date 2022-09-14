@@ -41,8 +41,7 @@ class DBStorage():
                 key = "{}.{}".format(row.__class__.__name__, row.id)
                 _all[key] = row
         else:
-            # classes = User, State, City, Amenity, Place, Review
-            classes = State, City
+            classes = User, State, City, Amenity, Place, Review
             for cls in classes:
                 query = self.__session.query(cls)
                 for row in query:
