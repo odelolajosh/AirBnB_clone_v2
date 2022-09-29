@@ -12,6 +12,12 @@ package {'nginx':
     require => Exec['update'],
 }
 
+# start nginx
+service {'nginx':
+    ensure  => 'running',
+    require => Package['nginx'],
+}
+
 # create the required folders
 file {'/data/web_static/releases/':
     ensure    => 'directory',
@@ -58,14 +64,15 @@ file {'/data/web_static/current':
 }
 
 # add "location" after line that contains "error_page 404" in nginx.conf
-exec {'add_location':
-    command => 'sudo sed -i "42i \\\tlocation /hbnb_static/ {\n\t\talias /data/web_static/current/;\n\t}" /etc/nginx/sites-available/default',
-    path    => '/usr/bin',
-    require => File['/data/web_static/current'],
+exec {'put location':
+  provider => shell,
+  command  => 'sudo sed -i \'38i\\tlocation /hbnb_static/ {\n\t\talias /data/web_static/current/;\n\t\tautoindex off;\n\t}\n\' /etc/nginx/sites-available/default',
+  require  => File['/data/web_static/current'],
 }
 
-# start nginx
-service {'nginx':
-    ensure  => 'running',
-    require => Exec['configure_nginx'],
+# restart nginx
+exec {'restart Nginx':
+    provider => shell,
+    command  => 'sudo service nginx restart',
+    require  => File['/data/web_static/current'],
 }
