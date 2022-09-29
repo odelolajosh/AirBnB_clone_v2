@@ -64,7 +64,7 @@ file {'/data/web_static/current':
 }
 
 # add "location" after line that contains "error_page 404" in nginx.conf
-exec {'put location':
+exec {'add_location':
   provider => shell,
   command  => 'sudo sed -i \'38i\\tlocation /hbnb_static/ {\n\t\talias /data/web_static/current/;\n\t\tautoindex off;\n\t}\n\' /etc/nginx/sites-available/default',
   require  => File['/data/web_static/current'],
@@ -74,5 +74,5 @@ exec {'put location':
 exec {'restart Nginx':
     provider => shell,
     command  => 'sudo service nginx restart',
-    require  => File['/data/web_static/current'],
+    require  => Exec['add_location'],
 }
