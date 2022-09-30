@@ -19,31 +19,47 @@ service {'nginx':
 }
 
 # create the required folders
+file { '/data/':
+    ensure  => 'directory',
+    mode    => '0755',
+    owner   => 'ubuntu',
+    group   => 'ubuntu',
+    require => Service['nginx']
+}
+
+file { '/data/web_static/':
+    ensure  => 'directory',
+    mode    => '0755',
+    owner   => 'ubuntu',
+    group   => 'ubuntu',
+    require =>  File['/data/']
+}
+
 file {'/data/web_static/releases/':
-    ensure    => 'directory',
-    mode      => '0755',
-    owner     => 'ubuntu',
-    group     => 'ubuntu',
-    recursive => true,
-    require   => Package['nginx'],
+    ensure  => 'directory',
+    mode    => '0755',
+    owner   => 'ubuntu',
+    group   => 'ubuntu',
+    recurse => true,
+    require => File['/data/web_static/'],
 }
 
 file {'/data/web_static/shared/':
-    ensure    => 'directory',
-    mode      => '0755',
-    owner     => 'ubuntu',
-    group     => 'ubuntu',
-    recursive => true,
-    require   => Package['nginx'],
+    ensure  => 'directory',
+    mode    => '0755',
+    owner   => 'ubuntu',
+    group   => 'ubuntu',
+    recurse => true,
+    require => File['/data/web_static/'],
 }
 
 file {'/data/web_static/releases/test/':
-    ensure    => 'directory',
-    mode      => '0755',
-    owner     => 'ubuntu',
-    group     => 'ubuntu',
-    recursive => true,
-    require   => Package['nginx'],
+    ensure  => 'directory',
+    mode    => '0755',
+    owner   => 'ubuntu',
+    group   => 'ubuntu',
+    recurse => true,
+    require => File['/data/web_static/'],
 }
 
 # write into /data/web_static/releases/test/index.html
