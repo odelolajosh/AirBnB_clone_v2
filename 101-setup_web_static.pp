@@ -25,6 +25,7 @@ file { '/data/':
     owner   => 'ubuntu',
     group   => 'ubuntu',
     require => Service['nginx']
+    recurse => true,
 }
 
 file { '/data/web_static/':
