@@ -25,7 +25,6 @@ file { '/data/':
     owner   => 'ubuntu',
     group   => 'ubuntu',
     require => Service['nginx']
-    recurse => true,
 }
 
 file { '/data/web_static/':
@@ -33,8 +32,7 @@ file { '/data/web_static/':
     mode    => '0755',
     owner   => 'ubuntu',
     group   => 'ubuntu',
-    recurse => true,
-    require =>  File['/data/'],
+    require =>  File['/data/']
 }
 
 file {'/data/web_static/releases/':
