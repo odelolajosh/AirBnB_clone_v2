@@ -33,7 +33,8 @@ file { '/data/web_static/':
     mode    => '0755',
     owner   => 'ubuntu',
     group   => 'ubuntu',
-    require =>  File['/data/']
+    recurse => true,
+    require =>  File['/data/'],
 }
 
 file {'/data/web_static/releases/':
