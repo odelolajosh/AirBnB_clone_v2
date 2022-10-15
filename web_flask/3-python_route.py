@@ -21,6 +21,7 @@ def c_prefix(text):
     """ C is fun """
     return "C {}".format(text.replace('_', ' '))
 
+
 @app.route("/python/<text>", strict_slashes=False)
 def py_prefix(text):
     """ Python is fun """
