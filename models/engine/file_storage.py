@@ -66,7 +66,7 @@ class FileStorage:
         if obj:
             del (self.__objects["{}.{}".format(type(obj).__name__, obj.id)])
             del (obj)
-    
+
     def close(self):
         """Close Filestorage"""
         self.reload()
