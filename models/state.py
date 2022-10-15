@@ -24,7 +24,7 @@ class State(BaseModel, Base):
             """ cities implementation for `file` storage type """
             all_cities = models.storage.all(City)
             _cities = []
-            for city in all_cities:
+            for city in all_cities.values():
                 if city.state_id == self.id:
                     _cities.append(city)
             return _cities
