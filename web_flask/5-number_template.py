@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 """ Hello HBNB """
 from flask import Flask, render_template
 app = Flask(__name__)
