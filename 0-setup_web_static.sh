@@ -13,4 +13,3 @@ sed -i "/error_page 404 \/404.html;/a \\\n\tlocation /hbnb_static { \
         \n\t}" /etc/nginx/sites-available/default
 # restart nginx
 service nginx restart
-
