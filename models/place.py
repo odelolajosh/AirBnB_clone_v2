@@ -39,7 +39,7 @@ class Place(BaseModel, Base):
         def reviews(self):
             all_reviews = models.storage.all(models.Review)
             _reviews = []
-            for review in all_reviews:
+            for review in all_reviews.values():
                 if review.place_id == self.id:
                     _reviews.append(review)
             return _reviews
